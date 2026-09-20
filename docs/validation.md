@@ -41,7 +41,8 @@ Measurements are single local runs, not a benchmark across computers or concurre
 - 25 automated tests pass: identifiers, batch parsing, safe aggregation, repeat builds, input preservation, CSV validation and formula escaping, API errors, source resume guards, and demo round trips.
 - Full snapshot build passes product-grain and aggregate-reconciliation assertions.
 - Bundled real-data demo loads with checksums verified: 240 products, 7,334 prices, 114 notices and 154 notice–product links.
-- Browser checks cover barcode search, product evidence and price chart, loading the 25-product catalogue, downloading its review CSV, and responsive layouts at 1440 × 1050 and 390 × 844.
-- Desktop and mobile screenshots were visually inspected. Mobile document width equals viewport width; wide tables use their own scroll container. The checked browser session had no console errors.
+- Browser checks cover barcode search, product evidence and price chart, loading the 25-product catalogue, downloading its review CSV, uploading duplicate-SKU and invalid-code examples, rejecting malformed headers, and responsive layouts at 1440 × 1050 and 390 × 844.
+- Desktop and mobile screenshots were visually inspected. Mobile document width equals viewport width; wide tables use their own scroll container. Normal flows produced no console errors; the deliberately invalid CSV produced the expected HTTP 400 and visible error message.
+- A clean Ubuntu GitHub Actions run installed pinned dependencies, passed all 25 tests and loaded and queried the bundled demo: [recorded run](https://github.com/Home-ad/retail-catalogue-guard/actions/runs/35519355845). The test client emits two upstream deprecation warnings; neither affects the passing results.
 
 No paid-client deployment, user adoption, financial savings, semantic-match accuracy, exhaustive browser compatibility or production concurrency testing is claimed. A person must check original notices and batch details before operational decisions.

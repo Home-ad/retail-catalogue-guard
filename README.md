@@ -1,5 +1,7 @@
 # Retail Catalogue Guard
 
+[![Tests](https://github.com/Home-ad/retail-catalogue-guard/actions/workflows/tests.yml/badge.svg)](https://github.com/Home-ad/retail-catalogue-guard/actions/workflows/tests.yml)
+
 **A local catalogue review tool that connects product records, historical recall notices and observed prices.**
 
 A purchasing team receives a spreadsheet of product codes. The useful question is not simply whether a code exists: is the code valid, does the description agree, are there historical recall candidates, and what evidence should a person check next?

@@ -18,7 +18,9 @@ Goal: a public, reproducible retail catalogue review tool using substantial real
 
 25 tests pass; Ruff and dependency checks pass. Real CSV review, export, product search and evidence screens work. Desktop and mobile views visually inspected. Demo exported and reloaded with checksums verified. Updated CV stays one A4 page and links to the intended public repository.
 
-Publication and clean GitHub Actions verification are the remaining gates. Full data is local in ignored data/; the repository includes only the attributed 240-product demo, source code, tests and documentation.
+Published at https://github.com/Home-ad/retail-catalogue-guard (PUBLIC). Clean Linux install, 25 tests and demo commands passed in GitHub Actions run 35519355845. Full data is local in ignored data/; the repository includes only the attributed 240-product demo, source code, tests and documentation. CV DOCX/PDF updated outside this repository and visually verified as one A4 page.
+
+The implementation and publication gates are complete. Known limits are documented rather than represented as solved: historical recall applicability requires human batch review, description flags are heuristic, source coverage is uneven, and production concurrency is untested.
 
 ## Decisions
 
