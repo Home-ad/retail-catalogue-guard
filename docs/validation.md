@@ -46,3 +46,14 @@ Measurements are single local runs, not a benchmark across computers or concurre
 - A clean Ubuntu GitHub Actions run installed pinned dependencies, passed all 25 tests and loaded and queried the bundled demo: [recorded run](https://github.com/Home-ad/retail-catalogue-guard/actions/runs/35519355845). The test client emits two upstream deprecation warnings; neither affects the passing results.
 
 No paid-client deployment, user adoption, financial savings, semantic-match accuracy, exhaustive browser compatibility or production concurrency testing is claimed. A person must check original notices and batch details before operational decisions.
+
+
+## Native Power BI follow-up
+
+28 automated tests pass after adding BI export and model checks. The complete seven-table extract has zero duplicate dimension keys and zero orphan fact keys across all six relationships. All observed source categories have English mappings.
+
+The full project was opened, imported, saved and reopened in Power BI Desktop 2.157.1354.0. All three pages were visually inspected. Product search and product/currency/unit selectors were exercised on code 03415581571110: 64 observations, 34 stores and a median of EUR 5.99, matching an independent DuckDB calculation. Initial search on the high-cardinality product slicer can be slow while Power BI builds its search index; the release opens the price page with this example selected.
+
+Twelve native DAX checks in [validation.dax](../powerbi/validation.dax) matched their expected values, including the blank median across mixed products and zero nonblank mixed-product monthly medians. [Count reconciliation screenshot](powerbi-validation.png) and [price checks](powerbi-price-validation.png) record the native results. The native PBIX snapshot and Parquet refresh package are distributed through the release, not as multi-GB raw dumps in Git.
+
+These checks establish import, reconciliation and the exercised interactions. They do not establish semantic-match accuracy, recall completeness, production performance or compatibility with every older Power BI version.

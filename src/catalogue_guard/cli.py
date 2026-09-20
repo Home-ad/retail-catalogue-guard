@@ -19,6 +19,9 @@ def main():
     review.add_argument("input", type=Path)
     review.add_argument("--output", type=Path, required=True)
     commands.add_parser("stats")
+    powerbi = commands.add_parser("powerbi")
+    powerbi.add_argument("--output", type=Path, default=Path("output/powerbi"))
+    powerbi.add_argument("--portable", action="store_true")
     demo = commands.add_parser("demo")
     demo.add_argument("--source", type=Path, default=Path("demo"))
     args = parser.parse_args()
@@ -51,6 +54,15 @@ def main():
         from .analytics import overview
 
         print(json.dumps(overview(args.data_dir / "catalogue.duckdb")["report"], indent=2))
+    elif args.command == "powerbi":
+        from .bi_project import build_powerbi
+
+        print(
+            json.dumps(
+                build_powerbi(args.data_dir / "catalogue.duckdb", args.output, args.portable),
+                indent=2,
+            )
+        )
     elif args.command == "demo":
         from .demo import load_demo
 

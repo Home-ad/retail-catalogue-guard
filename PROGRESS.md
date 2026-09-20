@@ -28,3 +28,12 @@ The implementation and publication gates are complete. Known limits are document
 - Three data source families. Normalized tables are not counted as independent sources.
 - Source dumps and generated database stay outside Git. Demo data attribution and ODbL obligations are documented separately from the code license.
 - No invented customers, savings, sales, stock levels or completed batch-recall determinations.
+
+
+## Power BI and analytical audit follow-up — 2026-09-20
+
+Corrected the deliverable emphasis: native Power BI report and full data extract, with the web CSV-review tool retained as a supporting workflow. Seven tables, six single-direction relationships, 17 DAX measures, three English pages. Full imported model: 4,582,027 distinct codes, of which 4,554,928 have catalogue records. Unmatched evidence retained explicitly. The median guard preserves comparable selections across chart dates and locations.
+
+28 automated tests and Ruff pass. Full export has zero duplicate relationship keys and zero orphan fact rows. Native Desktop import, save, reopen, all three pages and product/currency/unit filtering were checked. Twelve DAX reconciliations matched independent expected values. PBIX includes the complete snapshot. Full data assets belong in the v1.1.0 GitHub release; project definitions are in powerbi/project and source-generation commands in powerbi/README.md.
+
+Audit findings: price coverage 2.5203%, recall coverage 0.1366%, only 1,487 three-source catalogue matches; naive join would inflate intersection price observations by 26.47%. Name flags remain heuristic. Missing names total 269,586 including one whitespace-only name. No business impact or semantic precision is claimed. See docs/analytical-audit.md and docs/validation.md.

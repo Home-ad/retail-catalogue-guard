@@ -8,7 +8,11 @@ const escapeHtml = (value) =>
         character
       ],
   );
-const readable = (value) => String(value || "").replaceAll("_", " ");
+const readable = (value) => ({
+  description_conflict: "description needs review",
+  recall_description_conflict: "recall description needs review",
+  catalogue_name_conflict: "catalogue name needs review",
+}[value] || String(value || "").replaceAll("_", " "));
 let page = 1;
 let catalogueText = "";
 let currentTrend = [];

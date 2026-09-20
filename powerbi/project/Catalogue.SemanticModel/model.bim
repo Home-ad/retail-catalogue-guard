@@ -1,0 +1,653 @@
+{
+  "compatibilityLevel": 1606,
+  "model": {
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"DimProduct\",\"FactPrice\",\"DimLocation\",\"DimNotice\",\"FactRecallLink\",\"DimPriceDate\",\"DimRecallDate\",\"DataFolder\"]"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DaxQueryView_Desktop\",\"DevMode\"]"
+      }
+    ],
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "DataFolder",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "expression": "\"C:/RetailCatalogueGuard/data\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]",
+        "kind": "m",
+        "lineageTag": "81c2716a-12ce-4257-85ec-67138463084f"
+      }
+    ],
+    "relationships": [
+      {
+        "name": "a4ed054c-7d39-4e5e-8505-a1a083b473fb",
+        "fromColumn": "ProductCode",
+        "fromTable": "FactPrice",
+        "toColumn": "ProductCode",
+        "toTable": "DimProduct"
+      },
+      {
+        "name": "9369a633-54ce-4987-b994-0440a902658c",
+        "fromColumn": "LocationId",
+        "fromTable": "FactPrice",
+        "toColumn": "LocationId",
+        "toTable": "DimLocation"
+      },
+      {
+        "name": "8553e881-0324-4af5-a681-6cfae6a67138",
+        "fromColumn": "ObservedDate",
+        "fromTable": "FactPrice",
+        "toColumn": "Date",
+        "toTable": "DimPriceDate"
+      },
+      {
+        "name": "5e73c50c-e0d7-4565-b0fb-ecec2d2e54a9",
+        "fromColumn": "ProductCode",
+        "fromTable": "FactRecallLink",
+        "toColumn": "ProductCode",
+        "toTable": "DimProduct"
+      },
+      {
+        "name": "b0ce8252-5bbd-4ec2-a1b1-69df0b5c13fa",
+        "fromColumn": "NoticeId",
+        "fromTable": "FactRecallLink",
+        "toColumn": "NoticeId",
+        "toTable": "DimNotice"
+      },
+      {
+        "name": "f86f522f-0879-4277-b3d6-324104b01b74",
+        "fromColumn": "PublishedDate",
+        "fromTable": "DimNotice",
+        "toColumn": "Date",
+        "toTable": "DimRecallDate"
+      }
+    ],
+    "sourceQueryCulture": "en-150",
+    "tables": [
+      {
+        "name": "DimProduct",
+        "columns": [
+          {
+            "name": "ProductCode",
+            "dataType": "string",
+            "lineageTag": "a1241e65-c831-4a49-8d3c-d6806344d5c1",
+            "sourceColumn": "ProductCode",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "InProductCatalogue",
+            "dataType": "boolean",
+            "lineageTag": "490f0742-b3cc-4e8f-aba5-f1f24c857be9",
+            "sourceColumn": "InProductCatalogue",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ProductNameOriginal",
+            "dataType": "string",
+            "lineageTag": "87b81809-f826-4f99-873e-189192dface4",
+            "sourceColumn": "ProductNameOriginal",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Brand",
+            "dataType": "string",
+            "lineageTag": "6b38d547-79f4-4d7f-9686-619c01df0a15",
+            "sourceColumn": "Brand",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PackSizeOriginal",
+            "dataType": "string",
+            "lineageTag": "19228857-adf6-41a1-9564-a8c02b2f2086",
+            "sourceColumn": "PackSizeOriginal",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SourceRows",
+            "dataType": "int64",
+            "lineageTag": "c265c86b-3ec3-4310-bb7e-346d4e9602cc",
+            "sourceColumn": "SourceRows",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "MissingName",
+            "dataType": "boolean",
+            "lineageTag": "6dd8f9cb-70f8-4151-a30e-3a0a07f2f0a0",
+            "sourceColumn": "MissingName",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "HasObservedPrice",
+            "dataType": "boolean",
+            "lineageTag": "e1b7b037-dbc0-43d6-94c2-2f203b69f80b",
+            "sourceColumn": "HasObservedPrice",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "HasRecallCandidate",
+            "dataType": "boolean",
+            "lineageTag": "bdd958a4-c4fe-4bd6-a055-2019cba205fc",
+            "sourceColumn": "HasRecallCandidate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DescriptionReviewFlag",
+            "dataType": "boolean",
+            "lineageTag": "b04a16a9-058b-4d24-9d2c-1aaefc6801dd",
+            "sourceColumn": "DescriptionReviewFlag",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CoverageGroup",
+            "dataType": "string",
+            "lineageTag": "c55d1a96-1ab3-4b57-94fc-49540e3f3be2",
+            "sourceColumn": "CoverageGroup",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "63af15db-882e-428e-b0a4-0b0665b96850",
+        "measures": [
+          {
+            "name": "Catalogue products",
+            "expression": "CALCULATE(COUNTROWS(DimProduct), DimProduct[InProductCatalogue] = TRUE())",
+            "formatString": "#,0",
+            "lineageTag": "e12b0324-a97a-42ef-878f-c84929457f39"
+          },
+          {
+            "name": "Products with prices",
+            "expression": "CALCULATE([Catalogue products], DimProduct[HasObservedPrice] = TRUE())",
+            "formatString": "#,0",
+            "lineageTag": "f3131b66-0c3d-47fb-93b3-fe583387c311"
+          },
+          {
+            "name": "Price coverage",
+            "expression": "DIVIDE([Products with prices], [Catalogue products])",
+            "formatString": "0.00%",
+            "lineageTag": "6451ed2b-aec2-4199-af92-914081233b36"
+          },
+          {
+            "name": "Products with recall candidates",
+            "expression": "CALCULATE([Catalogue products], DimProduct[HasRecallCandidate] = TRUE())",
+            "formatString": "#,0",
+            "lineageTag": "82ee4d60-2821-4c22-b783-651b980f1cfd"
+          },
+          {
+            "name": "Recall coverage",
+            "expression": "DIVIDE([Products with recall candidates], [Catalogue products])",
+            "formatString": "0.00%",
+            "lineageTag": "debefa69-d4cf-49f4-9e56-76c0d4660940"
+          },
+          {
+            "name": "Missing product names",
+            "expression": "CALCULATE([Catalogue products], DimProduct[MissingName] = TRUE())",
+            "formatString": "#,0",
+            "lineageTag": "0d660028-68ff-4f44-95d8-39d73373a5d8"
+          },
+          {
+            "name": "Missing name share",
+            "expression": "DIVIDE([Missing product names], [Catalogue products])",
+            "formatString": "0.00%",
+            "lineageTag": "b865a9ff-baee-45a7-a7e5-5eae55bb5793"
+          },
+          {
+            "name": "All three sources",
+            "expression": "CALCULATE([Catalogue products], DimProduct[HasObservedPrice] = TRUE(), DimProduct[HasRecallCandidate] = TRUE())",
+            "formatString": "#,0",
+            "lineageTag": "ee9c8612-fc4e-4d26-bb94-615f76d09933"
+          },
+          {
+            "name": "Price observations",
+            "expression": "COUNTROWS(FactPrice)",
+            "formatString": "#,0",
+            "lineageTag": "d3a2d0d1-63f9-4cc2-a1d3-e223093c1704"
+          },
+          {
+            "name": "Historical notices",
+            "expression": "COUNTROWS(DimNotice)",
+            "formatString": "#,0",
+            "lineageTag": "3478aef7-c6c7-403d-9816-5c1e7f6ad1f5"
+          },
+          {
+            "name": "Candidate links",
+            "expression": "COUNTROWS(FactRecallLink)",
+            "formatString": "#,0",
+            "lineageTag": "cfd23d85-57e5-4560-9680-3d2f60142bdc"
+          },
+          {
+            "name": "Linked notices",
+            "expression": "DISTINCTCOUNT(FactRecallLink[NoticeId])",
+            "formatString": "#,0",
+            "lineageTag": "d9e6febc-166b-41c8-a34c-6593ae33f4eb"
+          },
+          {
+            "name": "Candidate product codes",
+            "expression": "DISTINCTCOUNT(FactRecallLink[ProductCode])",
+            "formatString": "#,0",
+            "lineageTag": "962837bc-f31a-40d7-aee3-b6d392b3960e"
+          },
+          {
+            "name": "Description review links",
+            "expression": "CALCULATE([Candidate links], FactRecallLink[DescriptionReviewFlag] = TRUE())",
+            "formatString": "#,0",
+            "lineageTag": "b2fc6649-6c44-4e69-a77b-323004e3154f"
+          },
+          {
+            "name": "Observed stores",
+            "expression": "CALCULATE(DISTINCTCOUNT(FactPrice[LocationId]), FactPrice[LocationId] <> -1)",
+            "formatString": "#,0",
+            "lineageTag": "5e9f07d1-e076-4615-8d67-75c0864285d4"
+          },
+          {
+            "name": "Median comparable price",
+            "expression": "IF(CALCULATE(HASONEVALUE(FactPrice[ProductCode]) && HASONEVALUE(FactPrice[Currency]) && HASONEVALUE(FactPrice[PriceUnit]), ALLSELECTED(DimPriceDate), ALLSELECTED(DimLocation)), MEDIAN(FactPrice[ObservedPrice]), BLANK())",
+            "formatString": "0.00",
+            "lineageTag": "9a933200-da2b-4322-8ec1-1f78c0534941"
+          },
+          {
+            "name": "Price selection guidance",
+            "expression": "IF(CALCULATE(HASONEVALUE(FactPrice[ProductCode]) && HASONEVALUE(FactPrice[Currency]) && HASONEVALUE(FactPrice[PriceUnit]), ALLSELECTED(DimPriceDate), ALLSELECTED(DimLocation)), \"Same code, currency and reported unit. Packaging changes remain unresolved.\", \"Select ONE product code, currency and price unit to view a median.\")",
+            "lineageTag": "9123d628-91ad-4ba0-877b-544d43ebc3cc"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimProduct",
+            "mode": "import",
+            "source": {
+              "expression": "let Source = Parquet.Document(File.Contents(DataFolder & \"/DimProduct.parquet\")) in Source",
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactPrice",
+        "columns": [
+          {
+            "name": "PriceId",
+            "dataType": "int64",
+            "lineageTag": "6ba26cb1-b853-4ed6-b545-3e9ea74c2acf",
+            "sourceColumn": "PriceId",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ProductCode",
+            "dataType": "string",
+            "lineageTag": "933c3b44-3e5b-482b-b511-c3e9a234894e",
+            "sourceColumn": "ProductCode",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ObservedDate",
+            "annotations": [
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-MM-dd",
+            "lineageTag": "6ee01243-543c-431c-82ec-3e3a597952bd",
+            "sourceColumn": "ObservedDate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ObservedPrice",
+            "dataType": "double",
+            "lineageTag": "07f40bc3-9e84-43c9-846b-79a898dc22cc",
+            "sourceColumn": "ObservedPrice",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Currency",
+            "dataType": "string",
+            "lineageTag": "f6caba72-15ce-49d7-be9d-49aebe7ff68e",
+            "sourceColumn": "Currency",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PriceUnit",
+            "dataType": "string",
+            "lineageTag": "51f1993e-024f-4a16-abf4-5cbdd6d8d357",
+            "sourceColumn": "PriceUnit",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "LocationId",
+            "dataType": "int64",
+            "lineageTag": "5a808e2e-c5ed-4be9-b3cf-f836d8ae506a",
+            "sourceColumn": "LocationId",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IsDiscounted",
+            "dataType": "boolean",
+            "lineageTag": "4cb98873-a03c-4820-9aa0-1abfc098b1fb",
+            "sourceColumn": "IsDiscounted",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SourceURL",
+            "dataCategory": "WebUrl",
+            "dataType": "string",
+            "lineageTag": "c5248451-e282-4990-bb55-2c26423e57b3",
+            "sourceColumn": "SourceURL",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "2b0da5d3-47d4-4c3e-8650-33ac2e09691c",
+        "partitions": [
+          {
+            "name": "FactPrice",
+            "mode": "import",
+            "source": {
+              "expression": "let Source = Parquet.Document(File.Contents(DataFolder & \"/FactPrice.parquet\")) in Source",
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimLocation",
+        "columns": [
+          {
+            "name": "LocationId",
+            "dataType": "int64",
+            "lineageTag": "3faaaac7-7784-44e7-b326-b33083d70bd3",
+            "sourceColumn": "LocationId",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CountryCode",
+            "dataType": "string",
+            "lineageTag": "e471f79a-5a75-4f16-b895-b0a781c3cd15",
+            "sourceColumn": "CountryCode",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "City",
+            "dataType": "string",
+            "lineageTag": "26fb85e9-d830-4528-b1cd-f0372f8a8510",
+            "sourceColumn": "City",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "StoreOriginal",
+            "dataType": "string",
+            "lineageTag": "a8da463c-5fba-4480-8ba9-d4b762f6c82d",
+            "sourceColumn": "StoreOriginal",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "e461e4d2-bad3-42fa-9606-5f61e754adb7",
+        "partitions": [
+          {
+            "name": "DimLocation",
+            "mode": "import",
+            "source": {
+              "expression": "let Source = Parquet.Document(File.Contents(DataFolder & \"/DimLocation.parquet\")) in Source",
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimNotice",
+        "columns": [
+          {
+            "name": "NoticeId",
+            "dataType": "string",
+            "lineageTag": "4113b98b-eba4-4965-9b13-60e5fe9a61f8",
+            "sourceColumn": "NoticeId",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PublishedDate",
+            "annotations": [
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-MM-dd",
+            "lineageTag": "7844b7d6-340e-4ee6-8853-f9e0f7efb1e6",
+            "sourceColumn": "PublishedDate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Category",
+            "dataType": "string",
+            "lineageTag": "921cd381-6cd7-4a8a-96f4-d4411e2f7fe0",
+            "sourceColumn": "Category",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CategoryOriginal",
+            "dataType": "string",
+            "lineageTag": "826c4236-5291-49e7-97a2-a1c620fbccef",
+            "sourceColumn": "CategoryOriginal",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "NoticeNameOriginal",
+            "dataType": "string",
+            "lineageTag": "904a7710-2cdc-477f-89c9-24cc1e69692c",
+            "sourceColumn": "NoticeNameOriginal",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ReasonOriginal",
+            "dataType": "string",
+            "lineageTag": "aa6f9070-b914-4054-b5da-f99590780273",
+            "sourceColumn": "ReasonOriginal",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "RiskOriginal",
+            "dataType": "string",
+            "lineageTag": "b82e16f3-a40c-4f8a-946d-8531128d7e20",
+            "sourceColumn": "RiskOriginal",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SourceURL",
+            "dataCategory": "WebUrl",
+            "dataType": "string",
+            "lineageTag": "774af31b-c3df-4840-9bcf-98d67b95d7fc",
+            "sourceColumn": "SourceURL",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "b5cf48a0-4a7f-4f40-a898-ababe93e0066",
+        "partitions": [
+          {
+            "name": "DimNotice",
+            "mode": "import",
+            "source": {
+              "expression": "let Source = Parquet.Document(File.Contents(DataFolder & \"/DimNotice.parquet\")) in Source",
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactRecallLink",
+        "columns": [
+          {
+            "name": "NoticeId",
+            "dataType": "string",
+            "lineageTag": "847cbe67-0345-4043-9218-d18b2b5d33f6",
+            "sourceColumn": "NoticeId",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ProductCode",
+            "dataType": "string",
+            "lineageTag": "b126f107-8418-4e8a-916d-53518d8fc890",
+            "sourceColumn": "ProductCode",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DescriptionReviewFlag",
+            "dataType": "boolean",
+            "lineageTag": "397713a2-4b20-4426-a986-c1e334992736",
+            "sourceColumn": "DescriptionReviewFlag",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "BatchTextOriginal",
+            "dataType": "string",
+            "lineageTag": "5b4426af-168b-49de-a498-ac40bfc0c0d2",
+            "sourceColumn": "BatchTextOriginal",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "580d89f5-15c6-49c4-89b4-cc3fd83ebfd0",
+        "partitions": [
+          {
+            "name": "FactRecallLink",
+            "mode": "import",
+            "source": {
+              "expression": "let Source = Parquet.Document(File.Contents(DataFolder & \"/FactRecallLink.parquet\")) in Source",
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimPriceDate",
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-MM-dd",
+            "lineageTag": "2d081d35-3468-4357-b5d5-75dbf20fa1cd",
+            "sourceColumn": "Date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "lineageTag": "50b7ca0a-1c5d-48f9-9e6d-905e603a42bc",
+            "sourceColumn": "Year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "YearMonth",
+            "dataType": "string",
+            "lineageTag": "45cfb427-8877-44e5-b264-748469cb3f08",
+            "sourceColumn": "YearMonth",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "MonthStart",
+            "annotations": [
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "MMM yyyy",
+            "lineageTag": "657b8738-faae-4819-b16b-e3ed235b865d",
+            "sourceColumn": "MonthStart",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "5efadad4-051a-4496-8127-a5afd70f8c1d",
+        "partitions": [
+          {
+            "name": "DimPriceDate",
+            "mode": "import",
+            "source": {
+              "expression": "let Source = Parquet.Document(File.Contents(DataFolder & \"/DimPriceDate.parquet\")) in Source",
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimRecallDate",
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-MM-dd",
+            "lineageTag": "0ce3b3b9-265c-4cce-a922-6724f49ac15d",
+            "sourceColumn": "Date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "lineageTag": "71ef355e-7ee1-4f28-95bd-d4888f830648",
+            "sourceColumn": "Year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "YearMonth",
+            "dataType": "string",
+            "lineageTag": "34feef9f-d103-4188-88b6-dcfa1fadf99e",
+            "sourceColumn": "YearMonth",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "MonthStart",
+            "annotations": [
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "MMM yyyy",
+            "lineageTag": "029c0aa3-d17e-4a09-8c09-f50b8d490259",
+            "sourceColumn": "MonthStart",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "ce240c07-96ab-48b2-ba57-16580956f3e4",
+        "partitions": [
+          {
+            "name": "DimRecallDate",
+            "mode": "import",
+            "source": {
+              "expression": "let Source = Parquet.Document(File.Contents(DataFolder & \"/DimRecallDate.parquet\")) in Source",
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

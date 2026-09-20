@@ -1,0 +1,17 @@
+EVALUATE
+UNION(
+ROW("Check","Catalogue products","Actual",[Catalogue products],"Expected",4554928),
+ROW("Check","Price observations","Actual",[Price observations],"Expected",302866),
+ROW("Check","Historical notices","Actual",[Historical notices],"Expected",13748),
+ROW("Check","Candidate links","Actual",[Candidate links],"Expected",12735),
+ROW("Check","All three sources","Actual",[All three sources],"Expected",1487),
+ROW("Check","Missing names","Actual",[Missing product names],"Expected",269586),
+ROW("Check","Mixed prices stay blank","Actual",IF(ISBLANK([Median comparable price]),1,0),"Expected",1),
+ROW("Check","Selected price rows","Actual",CALCULATE([Price observations],DimProduct[ProductCode]="03415581571110",FactPrice[Currency]="EUR",FactPrice[PriceUnit]="Unspecified"),"Expected",64)
+,
+ROW("Check","Selected price median","Actual",CALCULATE([Median comparable price],DimProduct[ProductCode]="03415581571110",FactPrice[Currency]="EUR",FactPrice[PriceUnit]="Unspecified"),"Expected",5.99),
+ROW("Check","Mixed monthly medians suppressed","Actual",COUNTROWS(FILTER(SUMMARIZECOLUMNS(DimPriceDate[MonthStart],"Median",[Median comparable price]),NOT ISBLANK([Median])))+0,"Expected",0)
+,
+ROW("Check","Unmatched codes with prices","Actual",CALCULATE(COUNTROWS(DimProduct),DimProduct[InProductCatalogue]=FALSE(),DimProduct[HasObservedPrice]=TRUE()),"Expected",22900),
+ROW("Check","Unmatched codes with recalls","Actual",CALCULATE(COUNTROWS(DimProduct),DimProduct[InProductCatalogue]=FALSE(),DimProduct[HasRecallCandidate]=TRUE()),"Expected",4245)
+)

@@ -1,5 +1,6 @@
 import json
 
+from .labels import category_english
 from .pipeline import connect
 
 
@@ -36,6 +37,9 @@ def overview(database):
             con.execute("""SELECT coalesce(nullif(category,''),'Unspecified') AS label, count(*) AS value
             FROM notices GROUP BY 1 ORDER BY 2 DESC LIMIT 8""")
         )
+        for row in categories:
+            row["source_label"] = row["label"]
+            row["label"] = category_english(row["label"])
         return {
             "report": report,
             "statuses": statuses,

@@ -2,11 +2,21 @@
 
 [![Tests](https://github.com/Home-ad/retail-catalogue-guard/actions/workflows/tests.yml/badge.svg)](https://github.com/Home-ad/retail-catalogue-guard/actions/workflows/tests.yml)
 
-**A local catalogue review tool that connects product records, historical recall notices and observed prices.**
+**Power BI reporting and a local catalogue review tool connecting product records, historical recall notices and observed prices.**
 
 A purchasing team receives a spreadsheet of product codes. The useful question is not simply whether a code exists: is the code valid, does the description agree, are there historical recall candidates, and what evidence should a person check next?
 
 Catalogue Guard turns that spreadsheet into a source-linked review queue. It also exposes the coverage and limitations of the underlying data, so an impressive row count does not hide weak matches.
+
+## Open the Power BI report
+
+Download the full-data **PBIX** and optional refresh-data package from [the Power BI release](https://github.com/Home-ad/retail-catalogue-guard/releases/tag/v1.1.0). Open the PBIX in Power BI Desktop; the imported snapshot is already inside it. No Python or account is needed to view the local report. Publishing to the Power BI service is not required.
+
+The report has three English pages, seven tables, six checked relationships and 17 DAX measures. It contains the full 4,554,928-product catalogue plus 27,099 codes with evidence but no catalogue card. [Build instructions and model](powerbi/README.md) · [Critical analytical audit](docs/analytical-audit.md).
+
+![Power BI catalogue coverage](docs/powerbi-coverage.png)
+
+The web interface below is an additional workflow for uploading a supplier CSV and inspecting original source evidence.
 
 ![Data overview](docs/overview.png)
 

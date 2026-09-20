@@ -13,3 +13,4 @@ jobs:
       - run: python -m pytest -q
       - run: catalogue-guard --data-dir data-demo demo
       - run: catalogue-guard --data-dir data-demo stats
+      - run: catalogue-guard --data-dir data-demo powerbi --output output/powerbi-ci
