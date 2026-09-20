@@ -1,0 +1,50 @@
+{
+  "built_at": "2026-09-20T15:15:11.195867+00:00",
+  "scope": "full",
+  "counts": {
+    "product_source": 4747229,
+    "products": 4554928,
+    "price_source": 314168,
+    "prices": 302866,
+    "notices": 13748,
+    "recall_links": 12735,
+    "recall_rejected": 6888,
+    "catalogue": 4554928,
+    "locations": 6639,
+    "recall_source_records": 18648,
+    "recall_price_overlap": 1533,
+    "three_source_overlap": 1487,
+    "description_conflicts": 1032,
+    "invalid_product_codes": 192255,
+    "duplicate_product_rows": 46
+  },
+  "sources": [
+    {
+      "source": "prices",
+      "url": "https://huggingface.co/datasets/openfoodfacts/open-prices/resolve/main/prices.parquet",
+      "retrieved_at": "2026-09-20T14:43:52.723265+00:00",
+      "bytes": 32437460,
+      "sha256": "1dbdb77b1789e74ff262f2fd3f00a7ebd15c4f920d69cc70a773d2874f496268"
+    },
+    {
+      "source": "products",
+      "url": "https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet",
+      "retrieved_at": "2026-09-20T14:55:36.745870+00:00",
+      "bytes": 7885464737,
+      "sha256": "d98cefa07d2b99588442fa9cb544f8aec3d52d079002ac8d9eeafa33752477db"
+    },
+    {
+      "source": "recalls",
+      "url": "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/rappelconso-v2-gtin-espaces/exports/json",
+      "retrieved_at": "2026-09-20T14:44:09.556733+00:00",
+      "bytes": 45866911,
+      "sha256": "e3f990cd14f369af3cdc1c871f97b774cd79b4ecf4b1592113f3fbf3959ff39f"
+    }
+  ],
+  "build_seconds": 50.2,
+  "checks": {
+    "product_grain_preserved": true,
+    "price_totals_reconciled": true,
+    "recall_totals_reconciled": true
+  }
+}

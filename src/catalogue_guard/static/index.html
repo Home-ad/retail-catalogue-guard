@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Retail Catalogue Guard</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <aside>
+      <a class="brand" href="/" aria-label="Retail Catalogue Guard home"
+        ><span class="logo">C/G</span
+        ><span>Catalogue<br /><b>Guard</b></span></a
+      >
+      <div class="nav-label">WORKSPACE</div>
+      <nav>
+        <button class="nav active" data-view="overview">
+          01 <span>Data overview</span></button
+        ><button class="nav" data-view="catalogue">
+          02 <span>Explore products</span></button
+        ><button class="nav" data-view="review">
+          03 <span>Review a catalogue</span></button
+        ><button class="nav" data-view="sources">
+          04 <span>Sources & methods</span>
+        </button>
+      </nav>
+      <div class="sidebar-note">
+        <span class="dot"></span> LOCAL WORKSPACE
+        <p>Open data.<br />Traceable decisions.</p>
+        <small>Independent portfolio project<br />by Mykola Polupan</small>
+      </div>
+    </aside>
+    <main>
+      <header>
+        <span>RETAIL OPERATIONS / DATA QUALITY</span
+        ><span id="snapshot">Loading snapshot…</span>
+      </header>
+      <div id="error" role="alert" hidden></div>
+      <section id="overview" class="view">
+        <div class="eyebrow">KNOW WHAT IS BEHIND YOUR CATALOGUE</div>
+        <h1>Millions of records.<br /><em>One clearer picture.</em></h1>
+        <div class="intro">
+          <p>
+            Connect product records, historical recall notices and observed
+            prices. Find what needs a closer look, with a source behind every
+            result.
+          </p>
+          <button class="primary" id="start-review">
+            Review a catalogue <span>↗</span>
+          </button>
+        </div>
+        <div id="metrics" class="metrics"></div>
+        <div class="section-title">
+          <h2>Where the data connects</h2>
+          <span>Counts reflect this local snapshot</span>
+        </div>
+        <div class="chart-grid">
+          <article>
+            <div class="chart-heading">
+              <h3>Cross-source coverage</h3>
+              <span>PRODUCTS</span>
+            </div>
+            <p class="caption">
+              A catalogue record does not guarantee a price or recall match.
+            </p>
+            <div id="coverage-chart" class="bars"></div>
+          </article>
+          <article>
+            <div class="chart-heading">
+              <h3>Food recall notices over time</h3>
+              <span>MONTHLY</span>
+            </div>
+            <p class="caption">
+              Publication counts, not estimates of product risk.
+            </p>
+            <div id="timeline-chart"></div>
+          </article>
+          <article>
+            <div class="chart-heading">
+              <h3>Recall categories</h3>
+              <span>TOP 8</span>
+            </div>
+            <div id="categories-chart" class="bars"></div>
+          </article>
+          <article>
+            <div class="chart-heading">
+              <h3>Price observations by country</h3>
+              <span>TOP 8</span>
+            </div>
+            <p class="caption">
+              Crowdsourced coverage is uneven across locations.
+            </p>
+            <div id="countries-chart" class="bars"></div>
+          </article>
+        </div>
+        <div class="callout">
+          <b>A barcode match starts a review.</b>
+          <p>
+            It does not confirm an affected batch or current stock. Historical
+            notices remain visible; “no notice found” is not a safety
+            certification.
+          </p>
+        </div>
+      </section>
+      <section id="catalogue" class="view" hidden>
+        <div class="eyebrow">FOLLOW THE EVIDENCE</div>
+        <h1>Explore the catalogue.</h1>
+        <p class="subtitle">
+          Search product names, brands or barcodes. Open a record to inspect its
+          source links and price history.
+        </p>
+        <form id="search-form" class="toolbar">
+          <label class="grow"
+            >Search<input
+              id="search"
+              placeholder="Try a brand, product or barcode"
+              maxlength="150" /></label
+          ><label
+            >View<select id="status">
+              <option value="all">All products</option>
+              <option value="recall_candidate">Recall candidates</option>
+              <option value="description_conflict">
+                Description conflicts
+              </option>
+              <option value="priced">With price observations</option>
+              <option value="missing_name">Missing product name</option>
+              <option value="no_notice_found">No notice found</option>
+            </select></label
+          ><button class="primary" type="submit">Search</button>
+        </form>
+        <div class="section-title">
+          <h2 id="results-count">Products</h2>
+          <span>Historical evidence, not live inventory</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Product / barcode</th>
+                <th>Brand</th>
+                <th>Prices</th>
+                <th>Notices</th>
+                <th>Review status</th>
+              </tr>
+            </thead>
+            <tbody id="products-body"></tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <button id="previous" class="secondary">← Previous</button
+          ><span id="page-number"></span
+          ><button id="next" class="secondary">Next →</button>
+        </div>
+      </section>
+      <section id="review" class="view" hidden>
+        <div class="eyebrow">FROM RAW CATALOGUE TO REVIEW QUEUE</div>
+        <h1>Make the exceptions visible.</h1>
+        <p class="subtitle">
+          Upload a UTF-8 CSV with <code>sku</code> and <code>barcode</code>. Add
+          <code>name</code> and <code>batch</code> if available. Up to 5,000
+          rows / 2 MB; processed locally without storing the upload.
+        </p>
+        <div class="upload-panel">
+          <div>
+            <h2>Bring your catalogue</h2>
+            <p>Codes stay as text, so leading zeros survive.</p>
+            <label class="file-label"
+              >Choose CSV<input
+                id="csv-file"
+                type="file"
+                accept=".csv,text/csv" /></label
+            ><span id="file-name">No file selected</span>
+          </div>
+          <div>
+            <span class="eyebrow">OR TRY REAL PRODUCT RECORDS</span>
+            <h3>Start with a 25-product demo</h3>
+            <p>
+              A selected sample of public records, not a real shop’s inventory.
+            </p>
+            <button id="demo-review" class="secondary">
+              Load & review demo →</button
+            ><a class="text-link" href="/api/demo-catalogue" download
+              >Download demo CSV</a
+            >
+          </div>
+        </div>
+        <div id="review-results" hidden>
+          <div class="section-title">
+            <h2>Catalogue review</h2>
+            <button id="export-review" class="primary">
+              Export review CSV ↓
+            </button>
+          </div>
+          <div id="review-metrics" class="metrics small"></div>
+          <p class="caption">
+            One row per catalogue item. Multiple issues may apply to the same
+            item.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>SKU / input barcode</th>
+                  <th>Matched product</th>
+                  <th>Issues to investigate</th>
+                  <th>Notices</th>
+                  <th>Batch status</th>
+                </tr>
+              </thead>
+              <tbody id="review-body"></tbody>
+            </table>
+          </div>
+          <div class="callout">
+            <b>Always check the original notice.</b>
+            <p>
+              Batch text is retained for review; this version does not
+              automatically determine whether your batch is affected.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="sources" class="view" hidden>
+        <div class="eyebrow">AUDITABLE BY DESIGN</div>
+        <h1>Sources, not assumptions.</h1>
+        <p class="subtitle">
+          Three public source families. Independent observations, explicit
+          uncertainty and checks against accidental double-counting.
+        </p>
+        <div id="source-list"></div>
+        <div class="chart-grid methods">
+          <article>
+            <h3>How matching works</h3>
+            <p>
+              GTIN lengths and check digits are validated, then codes are
+              represented as 14-character strings. Recall identifiers are
+              extracted conservatively from product blocks. Unparsed blocks
+              remain in a separate table.
+            </p>
+            <p>
+              A code identifies a candidate relationship. Disjoint name tokens
+              flag a possible description conflict; this simple rule is a review
+              aid, not a validated semantic classifier.
+            </p>
+          </article>
+          <article>
+            <h3>What the figures mean</h3>
+            <p>
+              Prices are observations, not sales. Notices are historical
+              reports, not current stock warnings. Comparisons keep currencies
+              and price units separate. Product metadata may describe a
+              different point in time from a price or notice.
+            </p>
+            <p>
+              No customer revenue, cost savings or product-safety outcome is
+              claimed.
+            </p>
+          </article>
+          <article>
+            <h3>What is checked</h3>
+            <p>
+              One catalogue row per valid canonical code. Prices and recalls are
+              aggregated before joining. Matched totals reconcile to their
+              source tables. Rebuilding uses a fresh staging database rather
+              than appending duplicate snapshots.
+            </p>
+          </article>
+          <article>
+            <h3>Licenses & attribution</h3>
+            <p>
+              Product information and price observations: Open Food Facts
+              contributors, ODbL. Recall notices: RappelConso / French public
+              authorities, Open Licence 2.0. Code: MIT.
+            </p>
+            <p>
+              Source URLs and SHA-256 checksums are recorded with each download.
+              Receipt images and contributor identities are excluded from the
+              app.
+            </p>
+          </article>
+        </div>
+      </section>
+      <footer>
+        <span>RETAIL CATALOGUE GUARD</span
+        ><span>Built for careful review, not automatic safety decisions.</span>
+      </footer>
+    </main>
+    <dialog id="product-dialog">
+      <div class="dialog-top">
+        <span>PRODUCT EVIDENCE</span
+        ><button
+          id="close-dialog"
+          class="secondary"
+          aria-label="Close product details"
+        >
+          Close ×
+        </button>
+      </div>
+      <div id="product-detail"></div>
+    </dialog>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

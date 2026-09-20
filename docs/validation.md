@@ -1,0 +1,47 @@
+# Recorded validation
+
+Validated on 20 September 2026 with 64-bit Python 3.12.14 on Windows. Dependency versions are pinned in `requirements-lock.txt`. Sources and SHA-256 values are recorded in [full-build.json](full-build.json).
+
+## Complete data build
+
+| Measure | Count |
+|---|---:|
+| Downloaded product records | 4,747,229 |
+| Rejected product identifiers, including zero placeholders | 192,255 |
+| Extra product rows collapsed after canonicalisation | 46 |
+| Unique accepted catalogue products | 4,554,928 |
+| Downloaded price observations | 314,168 |
+| Accepted price observations | 302,866 |
+| Observed store locations | 6,639 |
+| Downloaded recall records, including non-food categories | 18,648 |
+| Latest food notices | 13,748 |
+| Accepted notice–code relationships | 12,735 |
+| Quarantined recall identification blocks | 6,888 |
+| Products with both prices and recall candidates | 1,487 |
+| Products with a description-conflict flag | 1,032 |
+
+Quarantined blocks are not necessarily malformed GTINs: they include text or ambiguous identification that the deliberately narrow parser cannot safely interpret. The description heuristic has no measured precision or recall; translations and abbreviations can trigger false positives.
+
+The completed pipeline checks that catalogue grain is preserved and that price and notice counts reconcile to the source relationships after matching. It excludes all-zero codes, which otherwise produce misleading matches despite passing the check-digit calculation.
+
+The working catalogue contains 4,435,398 product-only records, 113,310 with prices but no notice match, 4,733 with notice matches but no prices, and 1,487 with both. This uneven overlap is an explicit limitation, not concealed by the overall row count.
+
+Price observation dates range from 2010-07-08 to 2026-09-19; notice publication dates range from 2021-03-26 to 2026-09-18. Source dates are retained as reported, including unusually old observations. They are not a complete continuous market history.
+
+## Performance observations
+
+The final full build completed in 50.2 seconds, excluding downloads. The 7.89 GB product source is projected to selected columns before DuckDB aggregation. The earlier direct scan with Python scalar callbacks was abandoned after excessive runtime; no unsupported speedup factor is claimed.
+
+A local HTTP review request containing 5,000 distinct real product codes and generated test SKUs completed in 2.518 seconds. All 5,000 rows were retained and matched; 43 required review: 24 missing names and 19 historical recall candidates, of which three also had description conflicts. These are rule outcomes, not independently confirmed defects or affected batches.
+
+Measurements are single local runs, not a benchmark across computers or concurrent users. Peak process memory was not measured. DuckDB has a 2 GB engine memory limit; Arrow and Python also use memory.
+
+## Automated and interface checks
+
+- 25 automated tests pass: identifiers, batch parsing, safe aggregation, repeat builds, input preservation, CSV validation and formula escaping, API errors, source resume guards, and demo round trips.
+- Full snapshot build passes product-grain and aggregate-reconciliation assertions.
+- Bundled real-data demo loads with checksums verified: 240 products, 7,334 prices, 114 notices and 154 notice–product links.
+- Browser checks cover barcode search, product evidence and price chart, loading the 25-product catalogue, downloading its review CSV, and responsive layouts at 1440 × 1050 and 390 × 844.
+- Desktop and mobile screenshots were visually inspected. Mobile document width equals viewport width; wide tables use their own scroll container. The checked browser session had no console errors.
+
+No paid-client deployment, user adoption, financial savings, semantic-match accuracy, exhaustive browser compatibility or production concurrency testing is claimed. A person must check original notices and batch details before operational decisions.

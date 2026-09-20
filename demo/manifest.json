@@ -1,0 +1,71 @@
+{
+  "selection": "Up to 60 records per review status, prioritising observed prices. Purposive demo, not a representative sample.",
+  "exported_at": "2026-09-20T15:15:31.559354+00:00",
+  "sources": [
+    {
+      "source": "prices",
+      "url": "https://huggingface.co/datasets/openfoodfacts/open-prices/resolve/main/prices.parquet",
+      "retrieved_at": "2026-09-20T14:43:52.723265+00:00",
+      "bytes": 32437460,
+      "sha256": "1dbdb77b1789e74ff262f2fd3f00a7ebd15c4f920d69cc70a773d2874f496268"
+    },
+    {
+      "source": "products",
+      "url": "https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet",
+      "retrieved_at": "2026-09-20T14:55:36.745870+00:00",
+      "bytes": 7885464737,
+      "sha256": "d98cefa07d2b99588442fa9cb544f8aec3d52d079002ac8d9eeafa33752477db"
+    },
+    {
+      "source": "recalls",
+      "url": "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/rappelconso-v2-gtin-espaces/exports/json",
+      "retrieved_at": "2026-09-20T14:44:09.556733+00:00",
+      "bytes": 45866911,
+      "sha256": "e3f990cd14f369af3cdc1c871f97b774cd79b4ecf4b1592113f3fbf3959ff39f"
+    }
+  ],
+  "files": [
+    {
+      "table": "products",
+      "file": "products.parquet",
+      "sha256": "c7fd16e9b0d8ad97fafec13c22e1241a33316766498f483367ca6b5f0753625f",
+      "bytes": 28229
+    },
+    {
+      "table": "catalogue",
+      "file": "catalogue.parquet",
+      "sha256": "3e64547038b611901903e139d60f6dce008bb2e9d5103c757d2cbfb6cf63a5e7",
+      "bytes": 29887
+    },
+    {
+      "table": "prices",
+      "file": "prices.parquet",
+      "sha256": "df320c77696128b7760d1c77b8c54dab92939b9e6018208d64fcf58c6d8229ee",
+      "bytes": 193998
+    },
+    {
+      "table": "notices",
+      "file": "notices.parquet",
+      "sha256": "52c7f4626882ae593c57c423da2d37f58fba2ada4b63c744f004f2592594e4ed",
+      "bytes": 26864
+    },
+    {
+      "table": "recall_links",
+      "file": "recall_links.parquet",
+      "sha256": "a083652b0dac5463481f52cbb5dae35014ad145ae11a938cdc47588002cdd510",
+      "bytes": 12167
+    },
+    {
+      "table": "recall_product_review",
+      "file": "recall_product_review.parquet",
+      "sha256": "c55232689603d709889c77fe962bace2f1e380bf44faebd835e159f40d69202b",
+      "bytes": 18807
+    },
+    {
+      "table": "locations",
+      "file": "locations.parquet",
+      "sha256": "c2fc932c68eda34c576aece7ea9d12cc466ddbab1f4a5145924ec4ee09bbb77e",
+      "bytes": 48523
+    }
+  ]
+}
