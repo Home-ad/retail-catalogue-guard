@@ -1,39 +1,25 @@
-# Retail Catalogue Guard
+# Project history
 
-Goal: a public, reproducible retail catalogue review tool using substantial real data from Open Food Facts, Open Prices and RappelConso.
+## 20 September 2026 — pipeline and local review workflow
 
-## Completion gates
+Built the recorded Open Food Facts, Open Prices and RappelConso snapshots into a local Python/DuckDB catalogue. The full build processed 4,747,229 product source records into 4,554,928 unique accepted products, with 302,866 accepted prices and 13,748 food notices. There were 1,487 catalogue products with both price and recall candidates. The build took 50.2 seconds after download; these are results from one development-machine run.
 
-- Download and process the full food catalogue and the full price and recall snapshots; publish measured counts and source provenance.
-- Keep historical barcode candidates separate from confirmed batch applicability. Preserve ambiguous identifiers and product-name conflicts for review.
-- Deliver a working CSV catalogue review workflow, source-linked product drilldown, useful charts and downloadable results.
-- Run tests for joins, identifiers, missing data, repeat imports, CSV handling and API behavior; inspect the real UI at desktop and mobile widths.
-- Include a small redistributable real-data demo, full-data commands, source attribution, limitations and readable modular code.
-- Audit staged files and publish a new public GitHub repository. Do not include credentials, personal CV files, raw receipt images or multi-GB dumps.
-- Revise CV claims to measured completed behavior only.
+The pipeline validates product identifiers, keeps observation grains separate, reconciles joined totals and replaces the working database only after staging checks pass. The web workflow supports CSV review, evidence drilldown and export. A redistributable demo contains 240 products with source attribution and checksums; full source dumps and generated databases stay outside Git.
 
-## Status
+Recorded checks: 25 automated tests, Ruff and dependency checks passed; desktop and mobile views were inspected. CSV review/export and demo reload were exercised. A [clean Linux CI run](https://github.com/Home-ad/retail-catalogue-guard/actions/runs/35519355845) installed pinned dependencies, passed the tests and loaded the demo. Details and validation boundaries are in [recorded validation](docs/validation.md) and [full-build.json](docs/full-build.json).
 
-2026-09-20: complete real-data build finished in 50.2 seconds after download. 4,747,229 source product rows become 4,554,928 unique accepted products; 302,866 accepted prices, 13,748 food notices and 1,487 three-source candidates. Checks and provenance are in docs/full-build.json and docs/validation.md.
+## 20 September 2026 — Power BI and analytical audit
 
-25 tests pass; Ruff and dependency checks pass. Real CSV review, export, product search and evidence screens work. Desktop and mobile views visually inspected. Demo exported and reloaded with checksums verified. Updated CV stays one A4 page and links to the intended public repository.
+Added a native Power BI report with seven tables, six single-direction relationships, 17 DAX measures and three English pages. Its complete imported model contains 4,582,027 codes: 4,554,928 catalogue products plus evidence for 27,099 codes without a product card. The median guard prevents comparisons across incompatible product, currency and unit selections.
 
-Published at https://github.com/Home-ad/retail-catalogue-guard (PUBLIC). Clean Linux install, 25 tests and demo commands passed in GitHub Actions run 35519355845. Full data is local in ignored data/; the repository includes only the attributed 240-product demo, source code, tests and documentation. CV DOCX/PDF updated outside this repository and visually verified as one A4 page.
+Recorded checks: 28 automated tests and Ruff passed. The full export had no duplicate dimension keys or orphan fact keys. Power BI Desktop import, save, reopen, all three pages and selected filtering interactions were checked; twelve DAX reconciliations matched independent expected values. The cached PBIX and refresh data are distributed in [release v1.1.0](https://github.com/Home-ad/retail-catalogue-guard/releases/tag/v1.1.0); editable definitions are in [powerbi/project](powerbi/project).
 
-The implementation and publication gates are complete. Known limits are documented rather than represented as solved: historical recall applicability requires human batch review, description flags are heuristic, source coverage is uneven, and production concurrency is untested.
+The audit measured price coverage of 2.5203% and recall coverage of 0.1366%. A naive join would inflate intersection price observations by 26.47%; separate aggregation avoids that multiplication. These are data-quality and coverage findings, not evidence of business impact. See the [analytical audit](docs/analytical-audit.md).
 
-## Decisions
+## 28 September 2026 — documentation review
 
-- Python and DuckDB for local analytics; FastAPI and a lightweight static frontend for a fully local, free UI.
-- Three data source families. Normalized tables are not counted as independent sources.
-- Source dumps and generated database stay outside Git. Demo data attribution and ODbL obligations are documented separately from the code license.
-- No invented customers, savings, sales, stock levels or completed batch-recall determinations.
+Reorganised the README around code review, the cached report and the bundled demo; made the demo and full-data paths explicit. Rechecked 28 tests, dependency consistency, demo loading and statistics, CLI CSV export, and the local HTTP demo-review flow. All passed. Documentation link targets were checked. The full source build and native Power BI checks were not repeated; their recorded results above remain dated to 20 September.
 
+## Scope
 
-## Power BI and analytical audit follow-up � 2026-09-20
-
-Corrected the deliverable emphasis: native Power BI report and full data extract, with the web CSV-review tool retained as a supporting workflow. Seven tables, six single-direction relationships, 17 DAX measures, three English pages. Full imported model: 4,582,027 distinct codes, of which 4,554,928 have catalogue records. Unmatched evidence retained explicitly. The median guard preserves comparable selections across chart dates and locations.
-
-28 automated tests and Ruff pass. Full export has zero duplicate relationship keys and zero orphan fact rows. Native Desktop import, save, reopen, all three pages and product/currency/unit filtering were checked. Twelve DAX reconciliations matched independent expected values. PBIX includes the complete snapshot. Full data assets belong in the v1.1.0 GitHub release; project definitions are in powerbi/project and source-generation commands in powerbi/README.md.
-
-Audit findings: price coverage 2.5203%, recall coverage 0.1366%, only 1,487 three-source catalogue matches; naive join would inflate intersection price observations by 26.47%. Name flags remain heuristic. Missing names total 269,586 including one whitespace-only name. No business impact or semantic precision is claimed. See docs/analytical-audit.md and docs/validation.md.
+A portfolio project developed with AI coding assistance, using public data. No paid client deployment, adoption, financial savings or independently validated semantic-match accuracy is claimed. Historical recall applicability requires human batch review; description flags are heuristic, source coverage is uneven and production concurrency is untested. Code and data licensing are documented separately in [LICENSE](LICENSE) and [DATA_LICENSE.md](DATA_LICENSE.md).
